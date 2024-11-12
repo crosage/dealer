@@ -2,21 +2,18 @@ package com.powerdealer.dealer.module.user.controller;
 
 import com.powerdealer.dealer.module.user.entity.User;
 import com.powerdealer.dealer.module.user.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/auth/")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable Integer id) {
-        return userService.getUserById(id);
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
@@ -24,22 +21,24 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PostMapping
-    public String createUser(@RequestBody User user) {
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Integer id) {
+        return userService.getUserById(id);
+    }
+
+    @PostMapping("/register")
+    public void createUser(@RequestBody User user) {
         userService.createUser(user);
-        return "User created successfully!";
     }
 
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable Integer id, @RequestBody User user) {
+    public void updateUser(@PathVariable Integer id, @RequestBody User user) {
         user.setId(id);
         userService.updateUser(user);
-        return "User updated successfully!";
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable Integer id) {
+    public void deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
-        return "User deleted successfully!";
     }
 }

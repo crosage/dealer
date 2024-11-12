@@ -14,6 +14,7 @@ public class UserService {
     private UserMapper userMapper;
 
     public void createUser(User user) {
+        System.out.println(user);
         userMapper.insertUser(user);
     }
 
