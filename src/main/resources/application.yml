@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: powerdealer213
+    url: jdbc:mysql://47.109.51.81:3306/powerdealer?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&userSSL=false
+
+server:
+  port: 3579
+  address: 0.0.0.0
+  tomcat:
+    uri-encoding: UTF-8
+
